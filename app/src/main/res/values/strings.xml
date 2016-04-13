@@ -19,7 +19,19 @@
     <string name="always_connect">Always connect</string>
     <string name="lblFullName">Full name</string>
     <string name="lblUsername">Username</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_add_animal">AddAnimalActivity</string>
+
+    <string name="lblNameAnimal">Animal name</string>
+    <string name="lblScientificName">Scientific name</string>
+    <string name="lblDescription">Description</string>
+    <string name="lblAddAnimal">Add</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

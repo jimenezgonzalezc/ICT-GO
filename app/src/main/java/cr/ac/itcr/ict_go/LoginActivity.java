@@ -19,7 +19,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +107,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d("Method", "onResume");
+        super.onResume();
+        dataSource = new DBDataSource(getApplicationContext());
     }
 
     private void populateAutoComplete() {
@@ -198,19 +206,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
+            //showProgress(true);
             boolean login = dataSource.login(email, password);
-            Intent i = new Intent(getApplicationContext(),MainActivity.class);
-            i.putExtra("DBDataSource", dataSource);
-            startActivity(i);
+            if (login){
+                Intent i = new Intent(getApplicationContext(),DashboardActivity.class);;
+                startActivity(i);
+            }
+            else {
+                Toast t=Toast.makeText(getApplicationContext(),"Error.Wrong username or password", Toast.LENGTH_SHORT);
+                t.show();
+            }
 //            mAuthTask = new UserLoginTask(email, password);
 //            mAuthTask.execute((Void) null);
         }
     }
 
     private void Register() {
-        Intent i = new Intent(getApplicationContext(),Register.class);
-        i.putExtra("DBDataSource", dataSource);
+        Intent i = new Intent(getApplicationContext(),RegisterActivity.class);
+        //i.putExtra("DBDataSource", dataSource);
         startActivity(i);
     }
 
