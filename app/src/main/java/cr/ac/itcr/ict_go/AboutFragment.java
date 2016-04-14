@@ -1,4 +1,4 @@
-package cr.ac.itcr.ict_go.Animal;
+package cr.ac.itcr.ict_go;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,23 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import cr.ac.itcr.ict_go.DBManager.DBDataSource;
-import cr.ac.itcr.ict_go.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link AddAnimalFragment.OnFragmentInteractionListener} interface
+ * {@link AboutFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link AddAnimalFragment#newInstance} factory method to
+ * Use the {@link AboutFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddAnimalFragment extends Fragment {
+public class AboutFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,7 +29,7 @@ public class AddAnimalFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public AddAnimalFragment() {
+    public AboutFragment() {
         // Required empty public constructor
     }
 
@@ -45,11 +39,11 @@ public class AddAnimalFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AddAnimalFragment.
+     * @return A new instance of fragment AboutFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddAnimalFragment newInstance(String param1, String param2) {
-        AddAnimalFragment fragment = new AddAnimalFragment();
+    public static AboutFragment newInstance(String param1, String param2) {
+        AboutFragment fragment = new AboutFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -57,40 +51,20 @@ public class AddAnimalFragment extends Fragment {
         return fragment;
     }
 
-    private DBDataSource dataSource;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dataSource = new DBDataSource(getActivity().getApplicationContext());
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View inflatedView = inflater.inflate(R.layout.fragment_add_animal, container, false);
-        final TextView txtNameAnimal = (TextView) inflatedView.findViewById(R.id.txtNameAnimal);
-        final TextView txtScientificName = (TextView) inflatedView.findViewById(R.id.txtScientificName);
-        final TextView txtDescription = (TextView) inflatedView.findViewById(R.id.txtDescription);
-        final TextView txtNameImg = (TextView) inflatedView.findViewById(R.id.txtNameImg);
-
-        Button registerButton = (Button) inflatedView.findViewById(R.id.btnAddAnimal);
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (txtNameAnimal.getText().toString() != "" && txtScientificName.getText().toString() != "" && txtDescription.getText().toString() != "") {
-                    dataSource.insertRecord("Animals", txtNameAnimal.getText().toString(), txtScientificName.getText().toString(), txtDescription.getText().toString(), txtNameImg.getText().toString());
-                    Toast t = Toast.makeText(getActivity().getApplicationContext(), "The animal has been added", Toast.LENGTH_SHORT);
-                    t.show();
-                } else {
-                    Toast t = Toast.makeText(getActivity().getApplicationContext(), "All fields are required", Toast.LENGTH_SHORT);
-                    t.show();
-                }
-
-            }
-        });
-        return inflatedView;
+        return inflater.inflate(R.layout.fragment_about, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

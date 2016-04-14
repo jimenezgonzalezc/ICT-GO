@@ -1,9 +1,11 @@
 package cr.ac.itcr.ict_go.Entity;
 
+import java.io.Serializable;
+
 /**
  * Created by car_e on 4/12/2016.
  */
-public class Animal {
+public class Animal implements Serializable {
     private int id;
     private String name;
     private String scientificName;
@@ -17,9 +19,8 @@ public class Animal {
         this.scientificName = sn;
         this.description = d;
         this.idImg = img;
-
     }
-
+    public Animal(){}
 
     public int getId() {
         return id;

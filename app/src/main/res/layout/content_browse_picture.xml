@@ -9,11 +9,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="cr.ac.itcr.ict_go.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context="cr.ac.itcr.ict_go.BrowsePictureActivity"
+    tools:showIn="@layout/activity_browse_picture">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnPickPicture"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World" />
+        android:text="Pick"
+        android:textStyle="bold" />
+
 </RelativeLayout>

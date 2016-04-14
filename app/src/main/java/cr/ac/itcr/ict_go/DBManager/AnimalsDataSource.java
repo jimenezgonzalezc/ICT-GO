@@ -38,13 +38,13 @@ public class AnimalsDataSource {
             "insert into "+ ANIMALS_TABLE_NAME +" values(" +
                     "null," +
                     "\"Tortuga\"," +
-                    "\"STortuga\"," +
+                    "\"Panthera onca\"," +
                     "\"Es una Tortuga\"," +
-                    "\"1\")," +
+                    "\"tortuga\")," +
                     "(null," +
                     "\"Jaguar\"," +
-                    "\"SJaguar\"," +
+                    "\"Dermochelys coriácea\"," +
                     "\"Es una Jaguar\"," +
-                    "\"2\")";
+                    "\"jaguar\")";
 
 }

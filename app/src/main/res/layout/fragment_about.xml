@@ -1,0 +1,61 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cr.ac.itcr.ict_go.AboutFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Hecho en el TEC"
+            android:id="@+id/textView5"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="50dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Desarrollo de aplicaciones moviles"
+            android:id="@+id/textView6"
+            android:layout_gravity="center_horizontal"
+            android:padding="1dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Examen I"
+            android:id="@+id/textView7"
+            android:layout_gravity="center_horizontal"
+            android:padding="1dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Aplicacion para el ICT, con el fin de que los usuarios registren la fauna de Costa Rica"
+            android:id="@+id/textView8"
+            android:layout_gravity="center_horizontal"
+            android:padding="1dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="2016"
+            android:id="@+id/textView10"
+            android:layout_gravity="center_horizontal"
+            android:padding="1dp"/>
+    </LinearLayout>
+
+</FrameLayout>

@@ -22,7 +22,9 @@ import cr.ac.itcr.ict_go.DBManager.DBDataSource;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        AddAnimalFragment.OnFragmentInteractionListener {
+        AddAnimalFragment.OnFragmentInteractionListener,
+        ListAnimalsFragment.OnFragmentInteractionListener,
+        AboutFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,21 +99,25 @@ public class DashboardActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_ListAnimals) {
-            // Handle the camera action
-        } else if (id == R.id.nav_AddAnimal) {
-            Fragment fragment = new AddAnimalFragment();
-
+            Fragment fragment = new ListAnimalsFragment() ;
             getSupportFragmentManager().beginTransaction().replace(R.id.content_dashboard , fragment).commit();
 
-        } else if (id == R.id.nav_UpdateAnimal) {
+        } else if (id == R.id.nav_AddAnimal) {
+            Fragment fragment = new AddAnimalFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_dashboard , fragment).commit();
 
-        } else if (id == R.id.nav_DeleteAnimal) {
+//        } else if (id == R.id.nav_UpdateAnimal) {
+//
+//        } else if (id == R.id.nav_DeleteAnimal) {
 
         } else if (id == R.id.nav_About) {
-
-        } else if (id == R.id.nav_send) {
-
+            Fragment fragment = new AboutFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_dashboard , fragment).commit();
         }
+
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

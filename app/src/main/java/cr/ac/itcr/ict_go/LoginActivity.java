@@ -3,7 +3,9 @@ package cr.ac.itcr.ict_go;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -27,6 +29,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,11 +70,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private CheckBox alwaysConnect;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataSource = new DBDataSource(getApplicationContext());
+        SharedPreferences preferencias = getSharedPreferences("ICT", Context.MODE_PRIVATE);
+        if(preferencias.getBoolean("always_connect",false))
+        {
+            Intent i = new Intent(getApplicationContext(),DashboardActivity.class);;
+            startActivity(i);
+            return;
+        }
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -111,7 +123,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onResume() {
-        Log.d("Method", "onResume");
         super.onResume();
         dataSource = new DBDataSource(getApplicationContext());
     }
@@ -209,6 +220,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //showProgress(true);
             boolean login = dataSource.login(email, password);
             if (login){
+                alwaysConnect =
+                        (CheckBox) findViewById(R.id.chkAlwaysConnect);
+
+                if(alwaysConnect.isChecked()) {
+                    SharedPreferences preferencias = getSharedPreferences("ICT", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferencias.edit();
+
+                    editor.putString("email", email);
+                    editor.putString("password", password);
+                    editor.putBoolean("always_connect",true);
+                    editor.commit();
+                }
+                else{
+                    SharedPreferences preferencias = getSharedPreferences("ICT", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferencias.edit();
+
+                    editor.putString("email", "");
+                    editor.putString("password", "");
+                    editor.putBoolean("always_connect",false);
+                    editor.commit();
+                }
                 Intent i = new Intent(getApplicationContext(),DashboardActivity.class);;
                 startActivity(i);
             }
